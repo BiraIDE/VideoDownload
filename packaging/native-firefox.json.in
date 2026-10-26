@@ -1,0 +1,7 @@
+{
+  "name": "stream2jd",
+  "description": "Ponte nativa local do Stream2JD",
+  "path": "@NATIVE@",
+  "type": "stdio",
+  "allowed_extensions": ["stream2jd@local", "{e926b255-9c8d-4803-bef1-34a13289b134}", "{c0ffce9c-d7b2-4ca9-8a4c-ddfceec9f259}"]
+}

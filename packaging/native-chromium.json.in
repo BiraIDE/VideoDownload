@@ -1,0 +1,7 @@
+{
+  "name": "stream2jd",
+  "description": "Ponte nativa local do Stream2JD",
+  "path": "@NATIVE@",
+  "type": "stdio",
+  "allowed_origins": ["chrome-extension://odkdigcolkajpmkggddccfjmbeikmcbb/"]
+}

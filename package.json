@@ -1,0 +1,32 @@
+{
+  "name": "stream2jd",
+  "version": "1.9.20",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox --mv2",
+    "build": "npm run build:firefox && npm run build:chromium",
+    "build:firefox": "wxt build -b firefox --mv2",
+    "build:chromium": "wxt build -b chrome --mv3",
+    "zip:firefox": "wxt zip -b firefox --mv2",
+    "zip:chromium": "wxt zip -b chrome --mv3",
+    "build:amo": "npm run check && wxt zip -b firefox --mv2",
+    "check": "tsc --noEmit",
+    "postinstall": "wxt prepare",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^30.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.39.0",
+    "@typescript-eslint/parser": "^8.39.0",
+    "@vitest/coverage-v8": "^2.1.9",
+    "jsdom": "^30.1.0",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^7.18.0",
+    "vite": "^8.2.2",
+    "vitest": "^2.1.9",
+    "web-ext": "^9.2.0",
+    "wxt": "^0.21.4"
+  }
+}

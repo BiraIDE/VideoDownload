@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Stream2JD</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <div class="wordmark"><span class="logo-mark">S</span><strong>STREAM2JD</strong></div>
+      <div class="header-actions">
+        <span id="bridge-state" class="bridge-state checking"><i></i> Conectando</span>
+        <button id="refresh" class="refresh-button" title="Atualizar" aria-label="Atualizar">
+          <svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>
+        </button>
+      </div>
+    </header>
+    <nav><span class="active">Capturas</span><span>JDownloader 2</span></nav>
+    <section class="overview">
+      <div id="video-cover" class="video-cover">
+        <img id="page-thumbnail" alt="Miniatura do vídeo" hidden>
+        <div id="thumbnail-fallback" class="thumbnail-fallback">
+          <svg viewBox="0 0 24 24"><path d="m9 7 8 5-8 5V7Z"/></svg>
+        </div>
+        <div class="cover-shade"><span id="video-type">VÍDEO</span><strong id="quality-count">0 qualidades</strong></div>
+      </div>
+      <div class="overview-copy">
+        <span class="eyebrow">VÍDEO ATUAL</span>
+        <h1 id="page-title">Analisando esta página…</h1>
+        <p><i></i><span id="monitor-label" aria-live="polite" aria-atomic="true">Monitoramento de vídeo ativo</span></p>
+        <p id="origin-url" class="origin-url" hidden><span class="origin-url-label">Origem</span><a id="origin-url-link" href="#" target="_blank" rel="noopener"></a><button id="origin-url-copy" class="origin-url-copy" type="button" title="Copiar URL original" aria-label="Copiar URL original">⧉</button></p>
+      </div>
+    </section>
+    <main>
+      <div class="section-heading"><div><strong>Qualidades disponíveis</strong><span id="stream-count">0 encontradas</span></div><button id="clear" type="button" aria-label="Limpar capturas">Limpar</button></div>
+      <div id="status" class="empty-state" role="status" aria-live="polite">
+        <div class="empty-icon"><svg viewBox="0 0 24 24"><path d="M4 17V7m4 13V4m4 13V7m4 13V4m4 13V7"/></svg></div>
+        <strong>Aguardando o vídeo</strong><span>Dê play para detectar as opções disponíveis.</span>
+      </div>
+      <div id="list" class="stream-list" role="list" aria-label="Qualidades disponíveis"></div>
+      <button id="best-send" class="best-send" type="button" hidden aria-live="polite">
+        <span><strong>Baixar melhor qualidade</strong><small>A maior resolução disponível será usada</small></span>
+        <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      <button id="youtube-send" class="youtube-send" type="button" hidden aria-live="polite">
+        <span><strong>Baixar melhor disponível</strong><small>Um vídeo final · áudio combinado · sem extras</small></span>
+        <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      <button id="record" class="record-button" type="button" aria-label="Gravar aba ou WebRTC">
+        <svg viewBox="0 0 24 24"><path d="M15 10.5 20 7v10l-5-3.5V17H4V7h11v3.5Z"/></svg>
+        <span><strong>Gravar aba / WebRTC</strong><small>Fallback para streams que não usam HTTP</small></span>
+      </button>
+    </main>
+    <details id="settings" class="settings-panel">
+      <summary>
+        <span class="settings-icon"><svg viewBox="0 0 24 24"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1A8 8 0 0 0 15 6.2L14.7 4h-4L10.4 6A8 8 0 0 0 8.6 7L6.2 6 4.3 9.4l2 1.5a7 7 0 0 0 0 2.2l-2 1.5L6.2 18l2.4-1a8 8 0 0 0 1.8 1l.3 2h4l.3-2a8 8 0 0 0 1.5-1l2.4 1 2-3.4-2-1.5a7 7 0 0 0 .1-1Z"/></svg></span>
+        <span><strong>Preferências</strong><small id="config-hint">Pareamento automático</small></span>
+        <svg class="chevron" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
+      </summary>
+      <div class="settings-body">
+        <label class="toggle-row"><span><strong>Interceptar downloads do navegador</strong><small>Envia arquivos HTTP/HTTPS ao JDownloader e cancela a cópia do navegador</small></span><input id="intercept-downloads" type="checkbox"><i class="toggle"></i></label>
+        <label class="toggle-row"><span><strong>Incluir cookies da página</strong><small>Ative quando o stream exigir uma sessão autenticada</small></span><input id="cookies" type="checkbox"><i class="toggle"></i></label>
+        <label class="toggle-row"><span><strong>Preservar cabeçalhos de sessão</strong><small>Authorization, Origin e cabeçalhos X-* ficam somente no computador</small></span><input id="capture-headers" type="checkbox"><i class="toggle"></i></label>
+        <label class="toggle-row"><span><strong>Iniciar imediatamente</strong><small>Evita que links temporários expirem no Capturador de Links</small></span><input id="instant-start" type="checkbox"><i class="toggle"></i></label>
+        <div class="fields">
+          <label>Token local<input id="token" type="password" autocomplete="off" placeholder="Pareamento automático"></label>
+          <label>Porta<input id="port" type="number" value="17442" min="1024" max="65535"></label>
+        </div>
+        <button id="save" class="save-button">Salvar preferências</button>
+      </div>
+    </details>
+    <footer><span id="app-version">Stream2JD · WXT</span><span>Streams + downloads</span></footer>
+  </div>
+  <script type="module" src="./main.ts"></script>
+</body>
+</html>

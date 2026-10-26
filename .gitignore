@@ -1,0 +1,8 @@
+node_modules/
+.output/
+.wxt/
+*.zip
+*.xpi
+coverage/
+.pytest_cache/
+.coverage

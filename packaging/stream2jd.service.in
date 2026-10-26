@@ -1,0 +1,16 @@
+[Unit]
+Description=Stream2JD local bridge
+After=default.target
+
+[Service]
+ExecStart=/usr/bin/python3 @HELPER@ --port 17442 --session-file %h/.config/stream2jd/sessions.json
+Restart=on-failure
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=%h/.config/stream2jd
+
+[Install]
+WantedBy=default.target
